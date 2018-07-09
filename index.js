@@ -16,9 +16,12 @@ passport.use(new GoogleStrategy({
     })
 );
 
-app.get('/', (req, res) => {
-    res.send({ hello: 'wendy'});
-});
+app.get(
+    '/auth/google',
+    passport.authenticate('google', {
+        scope: ['profile', 'email']
+    })
+);
 
 const PORT = process.env.PORT || 5000;
 
